@@ -1,17 +1,23 @@
-let number1=45;
-let number2=12;
+let number=456;
+console.log(number);
 
-number1 = number1 + number2;
-console.log(number1);
+number += 6;
+console.log(number);
 
-number1 = number1 - number2;
-console.log(number1);
+number ++;
+console.log(number);
 
-number1 = number1 * number2;
-console.log(number1);
+number /=2;
+console.log(number);
 
-number1 = number1 / number2;
-console.log(number1);
+number -= 3;
+console.log(number);
 
-number1 = number1 % number2;
-console.log(number1);
+number --;
+console.log(number);
+
+number %= 4;
+console.log(number);
+
+number += 'qwerty';
+console.log(number);
