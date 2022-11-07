@@ -1,10 +1,17 @@
+let number1=45;
+let number2=12;
 
-let userFirstName;
+number1 = number1 + number2;
+console.log(number1);
 
-const userLastName = 'Pitt';
+number1 = number1 - number2;
+console.log(number1);
 
-userFirstName = 'Tom';
+number1 = number1 * number2;
+console.log(number1);
 
-userLastName = 'Cruse';
+number1 = number1 / number2;
+console.log(number1);
 
-console.log(userFirstName, userLastName);
+number1 = number1 % number2;
+console.log(number1);
