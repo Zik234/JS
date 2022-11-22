@@ -1,27 +1,33 @@
 function MyArrayPrototype() {
-  this.push = function (value) {
-    this[this.length++] = value;
+  this.push = function () {
+    for (let i = 0; i < arguments.length; i++) {//перебираємо кожен аргумент
+      this[this.length++] = arguments[i];//значення аргументу
+    }
     return this.length;
   };
   this.pop = function () {
-    //перевіряємо жовжину, щоб не стала від'ємною
     if(this.length === 0){
         return;
     }
-    //отримати останній ш зберегти у змінну
     const lastItem = this[this.length-1];
-    //видалити останній
     delete this[this.length-1];
-    //змінити довжину
     this.length--;
-    //повернути останній зі змінною
     return lastItem;
   }
 }
 function MyArray() {
-  this.length = 0
+  this.length = 0;
+  if(arguments.length === 1){
+    for (let i = 0; i < arguments[0]; i++){
+      this.push(undefined);
+    }
+    return;
+  }
+  for (let i = 0; i < arguments.length; i++){
+    this.push(arguments[i]);
+  }
 }
-MyArray.prototype = new MyArrayPrototype()
+MyArray.prototype = new MyArrayPrototype(4,5,6,7)
 const myArr = new MyArray()
-myArr.push(12);
+myArr.push(12,14,12);
 myArr.push(56);
