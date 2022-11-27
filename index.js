@@ -1,39 +1,49 @@
-const nums = [1, 2, 5, 8, 5, 2, 9, 3, 9, 5]
+// написати скрипт, який створює об'єкт Товар з
+// властивостями:  назва, ціна, валюта
+// методами: показати усю інформацію про товар,
+// установити знижку на ціну і повернути нову ціну
+// з урахуванням знижки
 
-const newArr = nums.slice(0, 1)
+// скрипт, який створює об'єкт Товар з
+// властивостями:  назва, ціна, валюта
+function Goods(name, price, currency) {
+  this.name = name
+  this.price = price
+  this.currency = currency
+}
 
-console.log(newArr)
-console.log(nums)
+// методи
 
-nums.splice(3, 0, 111, 23, 54)
-console.log(nums)
-
-const num2 = [2, 12, 12, 3, 8, 5, 9, 6, 3, 12, 5]
-function changeMinElement(array, value) {
-  //знайти мінімальне
-  let minElem = array[0] // роблю припущення що перший елемент і є найменшим
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] < minElem) {
-      //порівнюю найменший з кожним елементом
-      minElem = array[i] //якщо поточний буде менше мінімального, то переписую значення мінімального
-    }
+function MetodsGoods() {
+  this.ShowInfoProduct = function () {
+    // метод інформація про продукт
+    return `Information about product:
+name : ${this.name},
+prise: ${this.price} ${this.currency}`
   }
-  //minElem=2
-  //на місуе мінімального вставити value через цикл
-  // for (let i = 0; i < array.length; i++) {
-  //   if (array[i] === minElem) {
-  //     array[i] = value
-  //   }
-  // }
-  let startIndex=0;
-  while (true) {
-    let startIndexMin = array.indexOf(minElem, startIndex++)
-    if (startIndexMin === -1) {
-      return
+
+  this.DiscountPrice = function (value) {
+    // метод встановлення знижки
+    if (value > 0 && value <= 100) {
+      return `Discount on ${this.name}: ${value}%`
     }
-    array.splice(startIndexMin, 1, value)
+    console.log('Discount cannot be accepted')
+    return NuN;
+  }
+
+  this.DiscountProduct = function (value2) {
+    //метод повертаючий товар зі знижкою
+    this.price = this.price - (this.price * value2) / 100
+    return `Information about product on discount:
+name : ${this.name},
+prise: ${this.price} ${this.currency}`
   }
 }
-console.log(num2)
-changeMinElement(num2, 888)
-console.log(num2)
+
+Goods.prototype = new MetodsGoods()
+
+const dishes = new Goods('cup', 40, 'UAH') // створив продукт
+console.log(dishes.ShowInfoProduct()) // вивів інформацію про продукт
+const discount = prompt('enter discount') // користувач ввів знижку
+console.log(dishes.DiscountPrice(discount)) //виводимо перевірку можливої знижки
+console.log(dishes.DiscountProduct(discount))//виводимо інформацію зі знижкою
