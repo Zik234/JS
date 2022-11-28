@@ -1,53 +1,47 @@
-// написати скрипт (можна функцію можна без), який виводить індекс
-//  максимального елемента в масиві. Якщо максимальних елементів
-//   декілька(значення однакові) - виводить індекс останнього
-// const arrNums = [1, 9, 5, 6 , 7, 9, 4, 6]; => індекс 5
+// 1) Знайти середнє арифметичне значення усіх переданих
+//аргументів, якщо аргументів не має - повертати null
 
-// * повертати кількість максимальних(однакових) елементів
-// const arrNums = [1, 9, 5, 6 , 7, 9, 4, 6]; =>кількість  2
-
-const arrNums = [1, 9, 5, 6, 7, 9, 6] //cтворюю масив
-
-function checkArrNums(array) {
-  let checkIndex = 0 //створюю максимальне значення
-  for (let index = 0; index < array.length; index++) {
-    if (array[index] >= array[checkIndex]) {
-      checkIndex = index
+function averageValue() {
+  let sum=0//роблю припущення що сумма = 0
+    for (let i = 0; i < arguments.length; i++) {//знаходжу сумму аргументів за допомогою циклу
+      if(arguments[i]===NaN){//якщо аргументів немає то вивожу null(не працює)
+        return null
+      }
+      sum += arguments[i]
     }
-  }
-  return checkIndex
-}
-console.log(
-  'arrNums = [',
-  arrNums.join(', '),
-  '] => index',
-  checkArrNums(arrNums),
-)
-
-function checkMaxElement(array) {
-  let maxElement = 0
-  for (let index = 0; index < array.length; index++) {
-    if (array[index] > array[maxElement]) {
-      maxElement = array[index]
-    }
-  }
-  return maxElement
+    return sum / arguments.length//повертаю середнє значення аргументів
 }
 
-function changeMaxElement(array){
-  let maxElement=checkMaxElement(array)
-  let count = 0
-  for (let index = 0; index < array.length; index++) {
-    if(maxElement === array[index]){
-      count++
-    }
-  }
-  return count
-}
+console.log(averageValue())
 
-console.log(
-  'arrNums = [',
-  arrNums.join(', '),
-  '] => number',
-  changeMaxElement(arrNums),
-)
+//2) Замінити усі максимальні значення в масиві на значення 0
+
+// const nums = [1, 2, 9, 4, 1, 9, 3, 4, 5, 6, 7, 8, 9,5]
+// function changeMaxElement(array, value) {
+//   //знайти максимальне
+//   let maxElem = array[0] //роблю припущення що перший елемент максимальний
+//   for (let i = 0; i < array.length; i++) {
+//     //перебираю всі елементи
+//     if (array[i] > maxElem) {
+//       //порівнюю найбільший з кожним елелментом
+//       maxElem = array[i] //переписую значення максимального
+//     }
+//   }
+//   //на місце максимального вставити value
+//   // for (let i = 0; i < array.length; i++) {
+//   //   if (array[i] === maxElem) {
+//   //     array[i] = value
+//   //   }
+//   // }
+
+//   let startIndex = 0
+//   while (true) {
+//     let startIndexMax = array.indexOf(maxElem, startIndex++) //повертаємо макс елемент
+//     if (startIndexMax === -1) {
+//       return
+//     }
+//     array.splice(startIndexMax, 1, value)
+//   }
+// }
+// changeMaxElement(nums, 0)
+// console.log(nums)
