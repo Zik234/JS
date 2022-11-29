@@ -1,47 +1,23 @@
-// 1) Знайти середнє арифметичне значення усіх переданих
-//аргументів, якщо аргументів не має - повертати null
+// Є массив [1,2,3,1,5,6,1,2,5], треба використовуючи цей масив створити новий,
+// в якому будуть присутні тільки тільки ті значення які повторюються.
+// Результат буде [1,2,5]
+// Якщо в джерельному масиві усі значення унікальні, то створюєте новий пустий масив.
 
-function averageValue() {
-  let sum=0//роблю припущення що сумма = 0
-    for (let i = 0; i < arguments.length; i++) {//знаходжу сумму аргументів за допомогою циклу
-      if(arguments[i]===NaN){//якщо аргументів немає то вивожу null(не працює)
-        return null
-      }
-      sum += arguments[i]
-    }
-    return sum / arguments.length//повертаю середнє значення аргументів
-}
+// *зробити функцію
 
-console.log(averageValue())
+const array = [1,1,1,1,1,2,3,1,2,2]
+console.log(array)
 
-//2) Замінити усі максимальні значення в масиві на значення 0
+const newArr = array.filter(function (elem, ind, arr) {
+  return arr.indexOf(elem) !== ind
+}) //створюємо новий масив
+//використовуємо метод фільтер
+//фільтруємо за елементом, індексом і масивом
+//шукаємо значення яке не дорівнює індексу
+//корегуємо масив і виводимо тільки ті єлементи які не повторюються
+const newArr2 = newArr.filter(function (elem, ind, arr) {
+  return arr.indexOf(elem) === ind
+})
 
-// const nums = [1, 2, 9, 4, 1, 9, 3, 4, 5, 6, 7, 8, 9,5]
-// function changeMaxElement(array, value) {
-//   //знайти максимальне
-//   let maxElem = array[0] //роблю припущення що перший елемент максимальний
-//   for (let i = 0; i < array.length; i++) {
-//     //перебираю всі елементи
-//     if (array[i] > maxElem) {
-//       //порівнюю найбільший з кожним елелментом
-//       maxElem = array[i] //переписую значення максимального
-//     }
-//   }
-//   //на місце максимального вставити value
-//   // for (let i = 0; i < array.length; i++) {
-//   //   if (array[i] === maxElem) {
-//   //     array[i] = value
-//   //   }
-//   // }
-
-//   let startIndex = 0
-//   while (true) {
-//     let startIndexMax = array.indexOf(maxElem, startIndex++) //повертаємо макс елемент
-//     if (startIndexMax === -1) {
-//       return
-//     }
-//     array.splice(startIndexMax, 1, value)
-//   }
-// }
-// changeMaxElement(nums, 0)
-// console.log(nums)
+console.log(newArr)
+console.log(newArr2)
