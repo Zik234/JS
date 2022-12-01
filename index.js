@@ -1,18 +1,49 @@
 'use strict'
 
-//1) Написати функцію струлку, яка приймає безліч аргументів і повертає їх добуток.
+// Написати рекурсивну функцію, яка обчислює факторіал числа.
+// Функція повина приймати тип данних: number або bigint, і кидатися помилками.
+// Викликати функцію, використовуючи конструкцію try...catch
 
-// const sum = (...rest) => rest.reduce((sum, item) => sum * item, 0)
 
-const product = (...num) => num.reduce((prod, vel) => prod * vel)
+//пишу функцію яка приймає число
+//знаходжу факторіал
+//якщо введене число не коретне вивожу помилку
+//якщо число від'ємне, помилка
+//вивожу факторіал
+//створюю трай кеч
+//переношу в трай вивід факторіала
+//кеч прописую умови виводу помилок
+//створюю вивід рядка після трай кеч, для перевірки їх роботи
+/**
+ * @param {number} num
+ * @returns {number}
+ * @throws {RangeError}
+ * @throws {TypeError}
+ */
 
-console.log(product(2, 2, 2, 1, 3, 4))
 
-//2) Є масив чисел, треба написати функцію, яка повертає масив з
-//двох елементів,
-//які є мінімальним і максимальним значенням джерельного масиву.
+function factorial(num) {
+  if (typeof num !== 'number' && typeof num !== 'bigint') {
+    throw new TypeError("Incorrect data entered, please enter a number")
+  }
+  if(num<0){
+    throw new RangeError('The factorial cannot be negative')
+  }
+  if (num === 0) {
+    return typeof num === 'bigint' ? 1n : 1
+  }
+  return num * factorial(num - 1)
+}
 
-const arrNum = [10,10,1,2,3,0,4,7,9]
+try {
+    console.log(factorial(5))
+} catch (error) {
+    if(error instanceof TypeError){
+        console.log(error)
+    }
+    if(error instanceof RangeError){
+        console.log(error)
+    }
+}
 
-const maxMinArrNum=(num)=>[Math.max(...num),Math.min(...num)]
-console.log(maxMinArrNum(arrNum))
+console.log('A string of text to check for try...catch')
