@@ -1,23 +1,18 @@
-// Є массив [1,2,3,1,5,6,1,2,5], треба використовуючи цей масив створити новий,
-// в якому будуть присутні тільки тільки ті значення які повторюються.
-// Результат буде [1,2,5]
-// Якщо в джерельному масиві усі значення унікальні, то створюєте новий пустий масив.
+'use strict'
 
-// *зробити функцію
+//1) Написати функцію струлку, яка приймає безліч аргументів і повертає їх добуток.
 
-const array = [1,1,1,1,1,2,3,1,2,2]
-console.log(array)
+// const sum = (...rest) => rest.reduce((sum, item) => sum * item, 0)
 
-const newArr = array.filter(function (elem, ind, arr) {
-  return arr.indexOf(elem) !== ind
-}) //створюємо новий масив
-//використовуємо метод фільтер
-//фільтруємо за елементом, індексом і масивом
-//шукаємо значення яке не дорівнює індексу
-//корегуємо масив і виводимо тільки ті єлементи які не повторюються
-const newArr2 = newArr.filter(function (elem, ind, arr) {
-  return arr.indexOf(elem) === ind
-})
+const product = (...num) => num.reduce((prod, vel) => prod * vel)
 
-console.log(newArr)
-console.log(newArr2)
+console.log(product(2, 2, 2, 1, 3, 4))
+
+//2) Є масив чисел, треба написати функцію, яка повертає масив з
+//двох елементів,
+//які є мінімальним і максимальним значенням джерельного масиву.
+
+const arrNum = [10,10,1,2,3,0,4,7,9]
+
+const maxMinArrNum=(num)=>[Math.max(...num),Math.min(...num)]
+console.log(maxMinArrNum(arrNum))
