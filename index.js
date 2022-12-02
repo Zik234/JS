@@ -1,49 +1,26 @@
 'use strict'
 
-// Написати рекурсивну функцію, яка обчислює факторіал числа.
-// Функція повина приймати тип данних: number або bigint, і кидатися помилками.
-// Викликати функцію, використовуючи конструкцію try...catch
 
-
-//пишу функцію яка приймає число
-//знаходжу факторіал
-//якщо введене число не коретне вивожу помилку
-//якщо число від'ємне, помилка
-//вивожу факторіал
-//створюю трай кеч
-//переношу в трай вивід факторіала
-//кеч прописую умови виводу помилок
-//створюю вивід рядка після трай кеч, для перевірки їх роботи
-/**
- * @param {number} num
- * @returns {number}
- * @throws {RangeError}
- * @throws {TypeError}
+const sentence = "     to         BE       oR   nOt        To     bE ";
+/*
+1-прибрати пробіли і повернути нову строку
+2- привести до нижнього регистру і повернути нову строку
+3- отримати кожне слово окремо
+4- використовуємо фільтр і повертаємо всі правди
+5- для кожного слова
+:- перша буква велика
+:- з нових слів отримати строку
+6- робимо одну строку через пробіл
+7- виводимо строку
  */
 
-
-function factorial(num) {
-  if (typeof num !== 'number' && typeof num !== 'bigint') {
-    throw new TypeError("Incorrect data entered, please enter a number")
-  }
-  if(num<0){
-    throw new RangeError('The factorial cannot be negative')
-  }
-  if (num === 0) {
-    return typeof num === 'bigint' ? 1n : 1
-  }
-  return num * factorial(num - 1)
+function toJadenCase(str) {
+return str
+.trim()
+.toLowerCase()
+.split(" ")
+.filter(Boolean)
+.map((word) => word[0].toUpperCase() + word.substring(1))
+.join(" ");
 }
-
-try {
-    console.log(factorial(5))
-} catch (error) {
-    if(error instanceof TypeError){
-        console.log(error)
-    }
-    if(error instanceof RangeError){
-        console.log(error)
-    }
-}
-
-console.log('A string of text to check for try...catch')
+console.log(toJadenCase(sentence)); //повинен бути результат:  'To Be Or Not To Be'
