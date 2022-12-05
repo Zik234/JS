@@ -1,138 +1,128 @@
 'use strict'
 
-// //інкапсуляція (абстракція)
-// //наслідування
-// //поліморфізм
+// + інкапсуляція (абстракція)
+// + наслідування
+// + поліморфізм
 
-// // Створити клас Товар з властивостями: назва, ціна, валюта, кількість,
-// // і методами: повернути інформацію про товар і купити товар(метод приймає кількість одиниць товару і повертає суму).
+class Figure3D {
+  /**
+   *
+   * @param {string} name
+   */
+  constructor(name) {
+    if (this.constructor === Figure3D) {
+      throw new Error('You cannot create instans in abstract class')
+    }
+    this.name = name
+  }
+  theVolume() {
+    throw new Error('you call method absract class')
+  }
+}
 
-// // Створити дочірні класи Фізичний товар і Віртуальний товар, обидва походять від класу товар.
-// // У фізичного товара додається властивість вага.
-// // У віртуального товара додається властивість розмір пам'яті.
+class Sphere extends Figure3D {
+  //сфера
+  /**
+   * @param {number} _radius
+   * @param {number} diametr
+   */
+  constructor(diametr) {
+    super('Sphere')
+    this.diametr = diametr
+  }
+  set diametr(diametr) {
+    if (typeof diametr !== 'number') {
+      throw new TypeError('Diametr must be number!')
+    }
+    if (typeof diametr <= 0) {
+      throw new RangeError('Diametr must > 0!')
+    }
+    this._diametr = diametr
+    this._radius = diametr / 2
+  }
+  getVolume() {
+    return `${this.name}\n${
+      (4 / 3) * Math.PI * (this._radius * this._radius * this._radius)
+    }`
+  }
+}
 
-// class Goods {
-//   //constructor object
-//   /**
-//    *
-//    * @param {string} name
-//    * @param {number} price
-//    * @param {string} currency
-//    * @param {number} number
-//    */
-//   constructor(name, price, currency, number) {
-//     if (typeof name !== 'string') {
-//       throw new TypeError('fname mustbe string')
-//     }
-//     if (typeof price !== 'number') {
-//       throw new TypeError('iname mustbe string')
-//     }
-//     if (typeof currency !== 'string') {
-//       throw new TypeError('iname mustbe string')
-//     }
-//     if (typeof number !== 'number') {
-//       throw new TypeError('iname mustbe string')
-//     }
-//     this.name = name
-//     this.price = price
-//     this.currency = currency
-//     this.number = number //seter
-//   }
-//   get price() {
-//     return this._price
-//   }
-//   set price(price) {
-//     if (price <= 0) {
-//       throw new RangeError('price must >0')
-//     }
-//     this._price = price
-//   }
-//   get number() {
-//     return this._number
-//   }
-//   set number(number) {
-//     if (number <= 0) {
-//       throw new RangeError('number must >0')
-//     }
-//     this._number = number
-//   }
-//   InformGoods() {
-//     return `${this.name}:${this._price}(${this.currency}) | ${this._number} pieces`
-//   }
-//   BuyGoods(num) {
-//     if (num <= 0) {
-//       throw new RangeError('number must >0')
-//     }
-//     if (num === undefined) {
-//       return `${this._price * this._number}(${this.currency})`
-//     } else if (typeof num !== 'number') {
-//       throw new TypeError('iname mustbe string')
-//     }
-//     return `${this.name}:${this._price}(${this.currency}) | ${num} pieces\n${
-//       this._price * num
-//     }(${this.currency})`
-//   }
-// }
-// class Physicalproduct extends Goods {
-//   constructor(name, price, currency, number, weight) {
-//     super(name, price, currency, number)
-//     if (typeof weight !== 'number') {
-//       throw new TypeError('fname mustbe number')
-//     }
-//     this.weight = weight
-//   }
-//   get weight() {
-//     return this._weight
-//   }
-//   set weight(weight) {
-//     if (weight <= 0) {
-//       throw new RangeError('number must >0')
-//     }
-//     this._weight = weight
-//   }
-//   InformGoodsPhysical() {
-//     return `${this.name}:${this.price}(${this.currency}) | ${this.number} pieces | ${this._weight} kg`}
-//   weightGoods() {
-//     return `${this.name} - ${this.number * this._weight} kg`
-//   }
-// }
+class Cube extends Figure3D {
+  //куб
+  /**
+   *
+   * @param {number} side
+   */
+  constructor(side) {
+    super('cube')
+    this.side = side
+  }
+  set side(side) {
+    if (typeof side !== 'number') {
+      throw new TypeError('Diametr must be number!')
+    }
+    if (typeof side <= 0) {
+      throw new RangeError('Diametr must > 0!')
+    }
+    this._side = side
+  }
+  getVolume() {
+    return `${this.name}\n${this._side * this._side * this._side}`
+  }
+}
 
-// class Virtualproduct extends Goods {
-//   constructor(name, price, currency, number, memorySize) {
-//     super(name, price, currency, number)
-//     if (typeof memorySize !== 'number') {
-//       throw new TypeError('fname mustbe number')
-//     }
-//     this.memorySize = memorySize
-//   }
-//   get memorySize() {
-//     return this._memorySize
-//   }
-//   set memorySize(memorySize) {
-//     if (memorySize <= 0) {
-//       throw new RangeError('number must >0')
-//     }
-//     this._memorySize = memorySize
-//   }
-//   InformGoodsVirtual() {
-//     return `${this.name}:${this.price}(${this.currency}) | ${this.number} pieces | ${this._memorySize} mBt`}
-//     memorySizeGoods() {
-//     return `${this._memorySize} mBt`
-//   }
-// }
+class Cylinder extends Figure3D {
+  //циліндр
+  /**
+   *
+   * @param {number} side
+   * @param {number} height
+   */
+  constructor(side, height) {
+    super('cylinder')
+    this.side = side
+    this.height = height
+  }
+  set side(side) {
+    if (typeof side !== 'number') {
+      throw new TypeError('Diametr must be number!')
+    }
+    if (typeof side <= 0) {
+      throw new RangeError('Diametr must > 0!')
+    }
+    this._side = side
+    this._radius = side / 2
+  }
+  set height(height) {
+    if (typeof height !== 'number') {
+      throw new TypeError('Diametr must be number!')
+    }
+    if (typeof height <= 0) {
+      throw new RangeError('Diametr must > 0!')
+    }
+    this._height = height
+  }
+  getVolume() {
+    return `${this.name}\n${
+      Math.PI * this._radius * this._radius * this._height
+    }`
+  }
+}
 
-// try {
-//   const Goods1 = new Goods('Hous', 23, 'UAH', 5)
-//   console.log(Goods1)
-//   console.log(Goods1.InformGoods())
-//   console.log(Goods1.BuyGoods())
-//   console.log(Goods1.BuyGoods(2))
-//   const Goods2 = new Physicalproduct('biff',55,'EU',10, 2)
-//   console.log(Goods2.InformGoodsPhysical())
-//   console.log(Goods2.weightGoods())
-//   const Goods3 = new Virtualproduct('chick',12,'FR',43, 7)
-//   console.log(Goods3.InformGoodsVirtual())
-//   console.log(Goods3.memorySizeGoods())
-// } catch (error) {
-//   console.log(error)
-// }
+function getVolume3DFigure(obj) {
+  if (obj instanceof Figure3D) {
+    return obj.getVolume()
+  }
+  throw new TypeError('Object must be figure')
+}
+
+try {
+  const figure1 = new Sphere(10) //діаиетр
+  const figure2 = new Cube(10) //сторона
+  const figure3 = new Cylinder(10, 5) //сторона на висоту
+  console.log(getVolume3DFigure(figure1))
+  console.log(getVolume3DFigure(figure2))
+  console.log(getVolume3DFigure(figure3))
+} catch (error) {
+  console.log(error)
+}
