@@ -17,48 +17,47 @@ function MyArrayPrototype() {
     return lastItem
   }
 
-  this.forEach = function (funcWork) {
+  this.some = function (funcCheck) {
     for (let i = 0; i < this.length; i++) {
-      funcWork(this[i])
-    }
-  }
-
-  this.some = function (func) {
-    for (let i = 0; i < this.length; i++) {
-      if (func(this[i])) {
+      if (funcCheck(this[i]) === true) {
         return true
       }
     }
     return false
   }
 
-  this.every = function(func){
+  this.every = function (funcCheck) {
     for (let i = 0; i < this.length; i++) {
-      if (func(this[i])=== false) {
+      if (funcCheck(this[i]) === false) {
         return false
       }
     }
     return true
   }
 
-  this.filter = function(funcCheck){
-    const newArr= new MyArray()
+  this.forEach = function (funcWork) {
     for (let i = 0; i < this.length; i++) {
-      if(funcCheck(this[i])){
+      funcWork(this[i])
+    }
+  }
+
+  this.filter = function (funcCheck) {
+    const newArr = new MyArray()
+    for (let i = 0; i < this.length; i++) {
+      if (funcCheck(this[i])) {
         newArr.push(this[i])
       }
     }
     return newArr
   }
 
-  this.map = function(funcWork){
-    const newArr= new MyArray()
+  this.map = function (funcWork) {
+    const newArr = new MyArray()
     for (let i = 0; i < this.length; i++) {
       newArr.push(funcWork(this[i]))
     }
     return newArr
-}
-
+  }
 }
 function MyArray() {
   this.length = 0
@@ -75,6 +74,12 @@ function MyArray() {
 
 MyArray.prototype = new MyArrayPrototype()
 
-const myArr = new MyArray(4, 5, 5, 8)
+const myArr = new MyArray()
 myArr.push(12, 14, 12)
 myArr.push(56)
+
+function logItem(v) {
+  console.log(v)
+}
+
+const MyArr2 = new MyArray()
