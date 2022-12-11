@@ -1,20 +1,43 @@
 'use strict'
 
-// const symbol = Symbol('create new symbol')
-// console.log(symbol)
+// Створити змінні для року народження, імені другої дитини,
+// робочого телефону. Бажано одинм рядком,
+// використовуючи деструктуризацію.
 
-// const obj1 = {
-//   login: 'qwerty',
-//   symbol: 777,
-//   [symbol]:'value with key symbol'
-// }
+const user = {
+  id: 1,
+  privateInfo: {
+    fname: 'Brad',
+    sname: 'Pitt',
+    bday: {
+      day: 18,
+      month: 12,
+      year: 1963,
+    },
+    children: ['Helen', 'Alex', 'Georg', 'Anna'],
+  },
+  contactInfo: {
+    phone: {
+      work: '123-12-45',
+      mobile: '005-002-003',
+    },
+    adress: {
+      town: 'ZP',
+      street: '12Avenu',
+      house: 45,
+    },
+    mail: 'brad@gmail.com',
+  },
+  profession: 'actor',
+}
 
-// console.log(obj1)
-// console.dir(obj1.symbol)
-// console.dir(obj1[symbol])
-
-// const arr = [1,2,3,4,5]
-// console.log(arr)
-// for(const iterator of arr){
-//   console.log(iterator)
-// }
+const {
+  privateInfo: {
+    bday: { year },
+    children: [, two],
+  },
+  contactInfo: {
+    phone: { work },
+  },
+} = user
+console.log(year, two, work)
